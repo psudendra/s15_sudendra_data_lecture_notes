@@ -31,3 +31,20 @@
       - Triage: prioritization
 
   - Request Response Cycle
+
+---
+## Lecture 2 (1/15/2015)
+  - RESTful:
+    - Representation State Transfer
+    - URI (class of links, larger than URLs, more generic than URLs) – Resources → URL: Create Read Update Destroy
+
+  - RESTful services:
+    - On any particular URL, apply HTTP resources to it
+      - GET: Read back user
+        - Current state of resource
+          - /users: representation of all users
+          - /users/{id}: particular user
+      - POST: Create new user
+        - Data that helps to create user
+      - PUT: Update user
+      - DELETE: Destroy user
