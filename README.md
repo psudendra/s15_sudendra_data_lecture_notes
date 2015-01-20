@@ -51,132 +51,40 @@
 
 ---
 ## Lecture 3 (1/20/2015)
-·     
-REST
+ - REST
+  - REST is an architectural style for web services
+    - Invented by Roy Fielding at UC Irvine
+  - REST is an approach to developing web services that mimics the design of the Web itself
+  - Your service provides access to a linked set of resources
+  - For each resource, you can perform operations on it similar to the main operations (aka methods) of the HTTP specifications
 
-o  
-**REST**
-is an architectural style for web services
+- REST Operations
+  - For each resource, you can typically perform at least one of the CRUS (Create, Read, Update, Delete) operations
+    - POST → CREATE a resource
+    - GET → READ (i.e. retrieve) a resource
+    - PUT → UPDATE a resource
+    - DELETE → DESTROY a resource
 
-§ 
-Invented by **Roy
-Fielding** at UC Irvine
+- Examples
+  - GET /api/1.0/users → Retrieve a list of all users
+  - GET /api/1.0/users/0 → Retrieve the details of User 0
+  - PUT /api/1.0/users/0 → Update User 0
+  - GET /api/1.0/search?q=tattersail → perform a search with the query tattersail
 
-o  
-REST is an approach to developing web services
-that mimics the design of the Web itself
+- Operations cont.
+  - Each operation may produce a result
+    - With RESTful services, JSON format is king
+  - POST and PUT methods typically send data
+    - Also in JSON format
+    - Maybe in the URL or in the body of the HTTP Request
+      - For GET, the data may appear as query params
+  - Other formats are possible: HTML & XML are typical
+  - If a request needs to be authenticated
+    - The authentication data appears in HTTP headers
 
-o  
-Your service provides access to a linked set of
-resources
-
-o  
-For each resource, you can perform operations on
-it similar to the main operations (aka methods) of the **HTTP specifications**
-
-**
-
- **
-
-·     
-REST Operations
-
-o  
-For each resource, you can typically perform at
-least one of the CRUS (Create, Read, Update, Delete) operations
-
-§ 
-POST à CREATE a resource
-
-§ 
-GET à READ (i.e. retrieve) a
-resource
-
-§ 
-PUT à UPDATE a resource
-
-§ 
-DELETE à DESTROY a resource
-
- 
-
-·     
-Examples
-
-o  
-GET /api/1.0/users à Retrieve a list of all
-users
-
-o  
-GET /api/1.0/users/0 à Retrieve the details
-of User 0
-
-o  
-PUT /api/1.0/users/0 à Update User 0
-
-o  
-GET /api/1.0/search?q=tattersail à
-perform a search with the query tattersail
-
- 
-
-·     
-Operations cont.
-
-o  
-Each operation may produce a result
-
-§ 
-With RESTful services, JSON format is king
-
-o  
-POST and PUT methods typically send data
-
-§ 
-Also in JSON format
-
-§ 
-Maybe in the URL or in the body of the HTTP
-Request
-
-·     
-For GET, the data may appear as query params
-
-o  
-Other formats are possible: HTML & XML are
-typical
-
-o  
-If a request needs to be authenticated
-
-§ 
-The authentication data appears in HTTP headers
-
-·     
-Issues
-
-o  
-Security: how do you authenticate users?
-
-o  
-Identity: how are ids assigned to resources?
-
-o  
-Failure: how do we handle failure situations?
-
-§ 
-Most services user a combination of both JSON
-and HTTP Status Codes
-
-o  
-Persistence: how are the resources stored?
-
- 
-
- 
-
- 
-
- 
-
- 
+- Issues
+  - Security: how do you authenticate users?
+  - Identity: how are ids assigned to resources?
+  - Failure: how do we handle failure situations?
+    - Most services user a combination of both JSON and HTTP Status Codes
+  - Persistence: how are the resources stored?
