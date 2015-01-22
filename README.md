@@ -88,3 +88,6 @@
   - Failure: how do we handle failure situations?
     - Most services user a combination of both JSON and HTTP Status Codes
   - Persistence: how are the resources stored?
+
+---
+## Lecture 4 (1/22/2015)
