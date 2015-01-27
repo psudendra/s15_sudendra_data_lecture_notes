@@ -91,3 +91,46 @@
 
 ---
 ## Lecture 4 (1/22/2015)
+ - Git
+ - GitHub
+
+---
+## Lecture 5 (1/27/2015)
+### Node.Js
+ - Most code in node is packaged inside of a module
+ - http is a core module, provided by Node.js itself
+ - The require function will look for modules in a variety of locations
+  - built-in modules
+  - globally-installed modules
+  - project-specific modules
+ - http provides a function called createServer()
+ - It takes a function that implements the server's behavior
+ - createServer() returns an object with a method listen()
+  - It accepts the server's network interface and port
+  - It also starts the server running
+  - This is the anonymous function passed to createServer().
+  - Each time the server receives a request
+    - It invokes this function and passes the HTTP request and response objects
+ - This particular function ignores all input and generates a simple HTTP response.
+  - console.log() is the printf() of the Javascript world.
+  
+- Our program in abstract
+  - Get the http module. Create a server; register a function; start a server. Print out a message.
+  - All of this is executed immediately when passed to node
+  - If no future work remained, node would shut down.
+  - This particular program, however, will run forever
+    - because the HTTP server has set up an event to check for new requests on every cycle of the event loop
+
+  - EVENT LOOP?
+    - In order to understand Node.js, you need to understand the event loop
+    - Event-based programming is a programming style where the code you write is not in control
+    - Instead, you write code that says (essentially) "When event x happens, do this"
+    
+    - Node tries to make it easy to add work to the event queue
+    - Libraries like http take functions and add them to the queue on your behalf (as we saw with createServer()).
+    - Node also lets you add functions to the event queue for later execution.
+      - process.nextTick()
+      - setImmediate()
+      - setTimeout()
+      - setInterval()
+      - 
