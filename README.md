@@ -374,3 +374,132 @@ curl http://epic-research.cs.colorado.edu:8080/api/1.0/third
 //POST Request
 curl -X POST --data '{"value":1000, "author":"Ken"}' http://epic-research.cs.colorado.edu:8080/api/1.0/answer
 ```
+---
+
+## Lecture 6
+
+#### Express
+* web application framework wrtitten in javascript for use in Node.js
+* design was influenced by Sinatra
+* makes it easy to define the endpoints of your web-based service
+* has features (such as serving statif files) that allow you to creat a website
+* minimal framework; designed to be augemnted by node packages that are then wired in as middleware
+
+Example
+```
+mkdir express_test
+cd express_test/
+npm init
+npm install --save express
+npm install --save body-parser
+npm install --save morgan
+npm list
+```
+
+Can use "-g" to install globally instead of locally for webapp.
+
+Example test.js
+```javascript
+var express = require('express');
+var parser = require('body-parser');
+var logger = require('morgan');
+
+var time = require('./lib/time.js');
+
+var app = express();
+
+app.set('port', process.env.PORT || 3000);
+app.set('env', process.env.NODE_ENV || 'development');
+
+app.use(parser.json());
+
+app.use(logger('dev'));
+
+app.get('/api/1.0/current_time', function(req, res){
+	res.json({status:true, time: time.current_tim()});
+});
+
+app.post('/api/1.0/from_now', function(req, res){
+	res.json({status:true, data:time.from_now(req.body.date)});
+});
+
+app.listen(app.get('port'), function(){
+	var message = 'Express started on http://localhost:';
+	console.log(message + app.get('port'));
+	message = 'Express is executing in the ';
+	console.log(message + app.get('env') + ' environment');
+});
+```
+
+Example time.js
+```javascript
+var moment = require('moment');
+
+var current_time = function(){
+	return moment().format('LL; LTS');
+}
+
+var from_now = function(date){
+	return moment(date, 'YYY-MM-DD').fromNow();
+}
+
+exports.current_time = current_time;
+exports.from_now = from_now;
+```
+
+curl command
+```
+$ curl -X POST --data '{"date":"2012-01-25"}' --header "Content-Type: application/json" http://localhost:3000/api/1.0/from_now
+```
+
+For Postman, set header Content-Type to application/json and put {"date":"2012-01-25"} in form data.
+---
+
+## Lecture 7
+
+#### AngularJS
+Open source web application framework.  Powerful, but complicated.
+
+##### Core Concepts
+* Data Bindings - the value of an HTML tag can be associated with a model object.  When one changes, Angular updates the other automatically.
+* Controllers - associated with a portion of your HTML and define all of the state and methods that can be accessed within that section of the page.  Allows you to _modularize_ your web apps. Manages data for some portion of a page while it is being displayed.
+* Services - Allows you to maintain state between invocations of a controller or if you need to share state between two different controllers. Created when Angular app is initialized and will remain in place for lifetime of the application.
+* Directives - ubiquitous, allows Angular to integrate into HTML in natural way. Can also create reusable components that combine controllers, data, and HTML.  For example, you can create a _login form_ component that can be re-used across multiple projects.
+* Embeddable - Can control as much or as little of a web page as you specify.  It's easy to embed a small Angular component into an existing page and tehn incrementally add enw functionality over time.
+* Injectable - _Dependency injection_  allows you to inject objects into a class, rather than relying on the class to create the object itself (e.g. factory design pattern, Spring).  Angular declares depndencies up front instead of using a main routine.  At run-tim, it will locate dependencies and inject them.
+
+Entire MVC being essentially created in browser.
+
+##### Modules
+A module is the parimary way to package up a set of controllers into an Angular app.
+
+Second parameter indicates that Angular needs to create it.  This has no dependencies.
+```javascript
+angular.module('contactsApp', [])
+```
+
+Once created, you can gain handle with no dependencies
+```javascript
+angular.module('contactsApp')
+```
+
+To narrow scope
+```javascript
+<html ng-app="contactsApp">
+</html>
+```
+
+```javascript
+angular.module('contactsApp').controller('MainController', [<dependencies and code>])
+```
+
+Simple controller with no dependencies.  Aliasing "this" creates closure.
+```javascript
+<MODULE>.controller('MainController', [function(){
+	var self = this;
+	self.name = "ken";
+	self.update = function(){
+		self.name = "Kenneth";
+	};
+}]);
+```
