@@ -376,7 +376,7 @@ curl -X POST --data '{"value":1000, "author":"Ken"}' http://epic-research.cs.col
 ```
 ---
 
-## Lecture 6
+## Lecture 6 (1/29/2015)
 
 #### Express
 * web application framework wrtitten in javascript for use in Node.js
@@ -456,7 +456,7 @@ For Postman, set header Content-Type to application/json and put {"date":"2012-0
 
 ---
 
-## Lecture 7
+## Lecture 7 (2/3/2015)
 
 #### AngularJS
 Open source web application framework.  Powerful, but complicated.
