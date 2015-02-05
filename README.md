@@ -453,6 +453,7 @@ $ curl -X POST --data '{"date":"2012-01-25"}' --header "Content-Type: applicatio
 ```
 
 For Postman, set header Content-Type to application/json and put {"date":"2012-01-25"} in form data.
+
 ---
 
 ## Lecture 7
